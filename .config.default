@@ -4,12 +4,6 @@ CONFIG_PACKAGE_openwisp-config-polarssl=y
 # openvpn
 CONFIG_PACKAGE_openvpn-polarssl=y
 
-# olsrd2
-CONFIG_PACKAGE_oonf-olsrd2=y
-CONFIG_OONF_NHDP_AUTOLL4=y
-CONFIG_OONF_OLSRV2_LAN_IMPORT=y
-CONFIG_OONF_GENERIC_DLEP_ROUTER=y
-
 # luci SSL
 CONFIG_PACKAGE_luci-ssl=y
 
