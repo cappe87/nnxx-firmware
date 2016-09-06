@@ -44,8 +44,8 @@ RELEASE="${RELEASE:-master}"
 ARCHS="${ARCHS:-ar71xx}"
 JOBS=${JOBS:-1}
 
-LEDE_DIR="lede"
-LEDE_GIT="http://git.lede-project.org/source.git"
+openwrt_DIR="openwrt"
+openwrt_GIT="https://github.com/openwrt/openwrt.git"
 PACKAGES_BRANCH="master"
 
 DEFAULT_FEEDS="feeds.conf.default"
@@ -67,12 +67,12 @@ else
 	CONFIG=$(cat "$DEFAULT_CONFIG")
 fi
 
-if [ -d $LEDE_DIR ]; then
-	cd $LEDE_DIR
+if [ -d $openwrt_DIR ]; then
+	cd $openwrt_DIR
 	git pull
 else
-	git clone $LEDE_GIT $LEDE_DIR
-	cd $LEDE_DIR
+	git clone $openwrt_GIT $openwrt_DIR
+	cd $openwrt_DIR
 fi
 
 if [[ "$RELEASE" != "master" ]]; then
@@ -117,7 +117,7 @@ done
 
 # publish binaries if -w|-www option is supplied
 if [ -n "$WWW_DIR" ]; then
-	BUILD_DIR="$WWW_DIR/lede-$RELEASE/$REVISION"
+	BUILD_DIR="$WWW_DIR/openwrt-$RELEASE/$REVISION"
 	if [ -d "$BUILD_DIR" ]; then
 		rm -rf $BUILD_DIR
 	fi
@@ -129,8 +129,8 @@ if [ -n "$WWW_DIR" ]; then
 	echo "Cleaning bin dir"
 	rm -rf ./bin/*
 	# update symbolic link to latest build
-	if [ -h "$WWW_DIR/lede-$RELEASE/latest" ]; then
-		rm "$WWW_DIR/lede-$RELEASE/latest"
+	if [ -h "$WWW_DIR/openwrt-$RELEASE/latest" ]; then
+		rm "$WWW_DIR/openwrt-$RELEASE/latest"
 	fi
-	ln -s "$WWW_DIR/lede-$RELEASE/$REVISION" "$WWW_DIR/lede-$RELEASE/latest"
+	ln -s "$WWW_DIR/openwrt-$RELEASE/$REVISION" "$WWW_DIR/openwrt-$RELEASE/latest"
 fi
